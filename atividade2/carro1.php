@@ -1,25 +1,22 @@
 <?php
 
-abstract class Carro{
+abstract class Veiculo{
     public string $nome;
-    public int $numRodas;
-    private int $numPortas;
     public string $marca;
+    private int $num_porta;
     protected string $cor;
-    public $velocidade;
-    public $modelo;
+    public string $tipo;
+    public int $velocidade = 0;
 
-    public function __construct(string $nome, int $numRodas, int $numPortas, string $marca, string $cor)
+
+    function __construct(string $nome, string $marca, int $num_porta, string $cor, string $tipo)
     {
-        $this->nome = $nome;
-        $this->numRodas = $numRodas;
-        $this->numPortas = $numPortas;
-        $this->marca = $marca;
-        $this->cor = $cor;
+    $this->nome = $nome;      
+    $this->marca = $marca;
+    $this->num_porta = $num_porta;
+    $this->cor = $cor;  
+    $this->tipo = $tipo;
     }
-
-
-
     abstract public function tipo(): string;
 
     public function andar(): void {
@@ -39,19 +36,18 @@ abstract class Carro{
     public function info(): void {
         echo "Marca: {$this->marca}<br>";
         echo "Nome: {$this->nome}<br>";
-        echo "Modelo: {$this->modelo}<br>";
         echo "Tipo: {$this->tipo()}<br><br>";
     }
+
 }
 
-class CarroRapido extends Carro{
-     public function tipo(): string {
-        return "Carro mais rapido
-        ";
+class Carro extends Veiculo{
+    public function tipo(): string {
+        return "Carro de Passeio";
     }
 }
 
-$wolkwagen = new CarroRapido("Wolks", 4, 4, "wolkswagen", "amarelo");
-$wolkwagen->andar();
+$uno = new Carro("uno", "fiat", 4, "vermelho", "casual", 50);
+$carro->andar();
+ 
 
-?>
